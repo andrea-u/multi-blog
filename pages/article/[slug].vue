@@ -89,7 +89,8 @@
 		</div>
 
 		<div>
-			<div class="font-bold text-3xl">{{ article.title }}</div>
+			<div class="font-bold text-3xl leading-none">{{ article.title }}</div>
+			<div class="text-slate-400 text-sm">{{ article.category_name }}</div>
 
 			<hr class="my-5" />
 
@@ -109,13 +110,16 @@
 		<div class="flex justify-between gap-2">
 			<div v-for="article in articles" class="w-[30%]">
 				<Card class="h-[400px] flex flex-col justify-between">
-					<CardHeader>
+					<CardHeader class="gap-0">
 						<CardTitle>{{ article.title }}</CardTitle>
+						<div class="text-slate-400 text-sm">
+							{{ article.category_name }}
+						</div>
 					</CardHeader>
 					<CardContent>
 						<NuxtImg :src="`${article.image_url}`" class="m-auto" />
 					</CardContent>
-					<CardFooter class="justify-end">
+					<CardFooter class="justify-end items-end px-6 pb-2">
 						<NuxtLink :to="`/article/${article.slug}`">
 							Scopri di più
 							<Icon

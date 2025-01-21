@@ -1,7 +1,4 @@
 import { defineStore } from "pinia";
-import axios from "../plugins/axios";
-
-const $axios = axios().provide.axios;
 
 export const useArticleStore = defineStore("article", {
 	state: () => ({
@@ -57,7 +54,6 @@ export const useArticleStore = defineStore("article", {
 					image_url: article.image.url,
 					image_title: article.image.title,
 				}));
-				console.log(this.articles);
 			}
 		},
 	},
