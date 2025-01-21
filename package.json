@@ -1,0 +1,41 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@datocms/cda-client": "^0.2.5",
+    "@datocms/cma-client-browser": "^3.4.1",
+    "@datocms/cma-client-node": "^3.4.1",
+    "@nuxt/icon": "^1.10.3",
+    "@nuxt/image": "^1.9.0",
+    "@nuxtjs/color-mode": "^3.5.2",
+    "@nuxtjs/tailwindcss": "^6.13.1",
+    "@pinia/nuxt": "^0.9.0",
+    "axios": "^1.7.9",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "contentful-rich-text-vue-renderer": "^3.1.0",
+    "lucide-vue-next": "^0.473.0",
+    "nuxt": "^3.15.2",
+    "pinia": "^2.3.0",
+    "radix-vue": "^1.9.12",
+    "shadcn-nuxt": "^0.11.3",
+    "tailwind-merge": "^2.6.0",
+    "tailwindcss-animate": "^1.0.7",
+    "vue": "latest",
+    "vue-datocms": "^7.0.6",
+    "vue-router": "latest"
+  },
+  "devDependencies": {
+    "nuxt-anchorscroll": "^1.0.5",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.7.3"
+  }
+}
