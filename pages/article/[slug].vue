@@ -19,14 +19,17 @@
 	});
 
 	onMounted(() => {
-		console.log("route.params.slug", articles.value);
-
 		if (articles.value.length > 0) {
 			article.value = articles.value.filter(
 				(article) => article.slug == route.params.slug
 			)[0];
 
 			parsedNodes.value = parseHtml(article.value.body);
+
+			// Rimozione dell'articolo corrente dalla lista degli articoli
+			articles.value = articles.value.filter(
+				(article) => article.slug !== route.params.slug
+			);
 		}
 
 		window.addEventListener("scroll", handleScroll);
@@ -38,9 +41,8 @@
 		}
 	});
 
+	// Parser per formattare il testo
 	function parseHtml(html) {
-		console.log(html);
-
 		const template = document.createElement("template");
 		template.innerHTML = html.trim();
 
@@ -56,6 +58,7 @@
 		}));
 	}
 
+	// Gestione dell'ancora
 	function handleScroll() {
 		const currentScroll = window.scrollY || document.documentElement.scrollTop;
 
@@ -107,8 +110,8 @@
 
 		<hr class="my-5" />
 
-		<div class="flex justify-between gap-2">
-			<div v-for="article in articles" class="w-[30%]">
+		<div class="flex flex-col lg:flex-row justify-start gap-5">
+			<div v-for="article in articles" class="w-full lg:w-[30%]">
 				<Card class="h-[400px] flex flex-col justify-between">
 					<CardHeader class="gap-0">
 						<CardTitle>{{ article.title }}</CardTitle>
@@ -117,7 +120,10 @@
 						</div>
 					</CardHeader>
 					<CardContent>
-						<NuxtImg :src="`${article.image_url}`" class="m-auto" />
+						<NuxtImg
+							:src="`${article.image_url}`"
+							class="m-auto w-3/4 sm:w-2/3 md:w-1/2 lg:w-full max-w-80"
+						/>
 					</CardContent>
 					<CardFooter class="justify-end items-end px-6 pb-2">
 						<NuxtLink :to="`/article/${article.slug}`">
@@ -131,6 +137,8 @@
 				</Card>
 			</div>
 		</div>
+
+		<!-- Ancora -->
 		<div
 			v-show="isVisible"
 			id="anchor"

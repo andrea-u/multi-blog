@@ -7,6 +7,7 @@ export const useArticleStore = defineStore("article", {
 		error: null,
 	}),
 	actions: {
+		// Funzione per il richiamo degli articoli
 		async getAllArticles() {
 			const query = `
                 query AllArticles {
@@ -39,6 +40,7 @@ export const useArticleStore = defineStore("article", {
 
 			if (data.value) {
 				this.articles = data.value.allArticles.map((article) => ({
+					// Articolo
 					id: article.id,
 					title: article.title,
 					body: article.body,

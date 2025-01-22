@@ -7,7 +7,6 @@
 	import {
 		Card,
 		CardContent,
-		CardDescription,
 		CardFooter,
 		CardHeader,
 		CardTitle,
@@ -16,23 +15,19 @@
 	const articles = ref([]);
 
 	onBeforeMount(async () => {
+		// Richiamiamo gli articoli
 		await $articleStore.getAllArticles();
 
 		articles.value = $articleStore.articles;
 	});
-
-	onMounted(() => {
-		getArticles();
-	});
-
-	const getArticles = () => {
-		articles.value = $articleStore.articles;
-	};
 </script>
 
 <template>
 	<MainLayout>
-		<div class="flex flex-col lg:flex-row justify-between gap-2">
+		<div
+			v-if="!$articleStore.error"
+			class="flex flex-col lg:flex-row justify-between gap-2"
+		>
 			<div v-for="article in articles" class="w-full lg:w-[30%]">
 				<Card class="h-[400px] flex flex-col justify-between shadow-[#D3D3D3]">
 					<CardHeader class="gap-0">
@@ -61,6 +56,9 @@
 					></CardFooter>
 				</Card>
 			</div>
+		</div>
+		<div v-else>
+			{{ $articleStore.error }}
 		</div>
 	</MainLayout>
 </template>
